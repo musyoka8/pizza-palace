@@ -1,0 +1,42 @@
+/*<-------- General styles ----------> */
+body{
+    background-image: url('/images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:100vh;
+}
+.cover{
+    height:100vh;
+    background-color: rgba(0,0,0,.5)
+}
+
+#header{
+    height:20vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:#F18C41;
+}
+#carousel{
+    height:50vh;
+}
+.img-carousel{
+    background-size: cover;
+    height:60vh;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#img-3{
+    background-image: url('/images/pizza/pizza1.jpg');
+}
+#img-2{
+    background-image: url('/images/pizza/pizza2.jpg');
+}
+#img-1{
+    background-image: url('/images/pizza/pizza3.jpg');
+}
+#img-4{
+    background-image: url('/images/pizza/pizza4.jpg');
+}
+
