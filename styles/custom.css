@@ -59,5 +59,26 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
+#Big-Mark{
+    background-image: url(/images/pizza/pizza2.jpg)
+}
+#Cheese-Love{
+    background-image: url(/images/pizza/pizza3.jpg)
+}
+#Pepperoni-Craze{
+    background-image: url(/images/pizza/pizza4.jpg)
+}
+
+.price-display,.card-title{
+    display: inline-block;
+}
 
 
+.price-display{
+    float: right;
+}
+
+.card-footer{
+    display: flex;
+    flex-direction: column;
+}

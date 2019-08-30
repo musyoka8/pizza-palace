@@ -1,8 +1,8 @@
 const Pizza = function(name,size='small'){
     this.name = name;
     this.size = size;
-    this.topping = 'mushrooms';
-    this.crust = 'puff';
+    this.topping = null;
+    this.crust = null;
     Object.defineProperty(this,'price',{
         get: function(){
             switch (this.size) {
@@ -84,11 +84,47 @@ $(function(){
     availablePizza.forEach(function(pizza){
         $('#card-display').append(`
             <div class="card">
-                <div id="${pizza.name}" class="card-img-top"></div>
+                <div id="${(pizza.name).replace(' ','-')}" class="card-img-top"></div>
                 <div class="card-body">
                     <h5 class="card-title">${pizza.name}</h5>
+                    <div class="price-display">${pizza.getTotalPrice()}</div>
                 </div>
+                <div style="clear:both;"><div>
                 <div class="card-footer">
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="size">Size</label>
+                                    <select name="size" class="form-control" id="size">
+                                        <option value="small">Small</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="large">Large</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="topping">Topping</label>
+                                    <select name="topping" class="form-control" id="topping">
+                                        <option value="spinach">Spinach</option>
+                                        <option value="pineapple">Pineapple</option>
+                                        <option value="sausage">Sausage</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="crust">Crust</label>
+                                    <select name="crust" class="form-control" id="crust">
+                                        <option value="crispy">Crispy</option>
+                                        <option value="stuffed">stuffed</option>
+                                        <option value="glutenFree">glutenFree</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <button class="btn btn-secondary cart-btn">Order</button>
                 </div>
             </div> 
