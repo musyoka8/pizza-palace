@@ -95,7 +95,7 @@ const computeChanges = function(pizza,object,card){
             count:1
         })
         updatePrice(card,orders[0].details.getTotalPrice());
-        updateCount(card,1)
+        updateCount(card,`1 in Cart`)
     }else{
         orders[index].details = pizza;
         updatePrice(card,orders[index].details.getTotalPrice() * orders[index].count )
@@ -289,10 +289,32 @@ $(function(){
    
     $('.close').click(function(){
         $('#mymodal').hide();
+        
     })
     $('.cart').click(function(){
+        $('#mymodal').find('#summary').empty();
         $('#mymodal').show();
+        total = 0;
+        orders.forEach(function(order){
+            total += order.details.getTotalPrice()*order.count;
+            $('#summary').append(`
+                <div>
+                    <h3>${order.details.name}</h3>
+                    <p>Size :  ${order.details.size}</p>
+                    <p>topping : ${order.details.topping}</p>
+                    <p> Crust : ${order.details.crust}</p>
+                    <p class="lead"> subtotal : ${order.details.getTotalPrice()}</p>
+                    <p> count : ${order.count}</p>
+                    <p class="lead"> Total : ${order.details.getTotalPrice()*order.count}<p/> 
+                    <hr>
+                </div>
+            `)
+        })
+        $('.total').html(`<h2>Total : ${total}</h2>`)
+
+
     })
+    
 
 
 })

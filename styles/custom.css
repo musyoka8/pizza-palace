@@ -110,7 +110,7 @@ body{
 .modal{
     display:none;
     position: fixed;
-    z-index:1;
+    z-index:10;
     left:0;
     top:0;
     width:100%;
@@ -145,8 +145,25 @@ body{
     from{transform:scale(0)}
     to{transform:sclae(1)}
 }
-@media screen and (max-width:300px){
-}
 
+/*<------- Summary styling in Modal----> */
+#summary{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+#summary div{
+    padding:10px;
+    width:300px;
+    height:250px;
+}
+#summary p {
+    margin:0;
+    font-size: 15px;
+}
+#summary hr{
+    width:80%;
+}
 
 
