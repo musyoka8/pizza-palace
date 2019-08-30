@@ -80,7 +80,7 @@ availablePizza.push(bigMark,cheeseLove,pepperoni);
 
 const orders = []
 
-const computeChanges = function(pizza,object,displayPrice){
+const computeChanges = function(pizza,object,card){
     pizza.size = object.size;
     pizza.topping = object.topping;
     pizza.crust = object.crust;
@@ -90,16 +90,21 @@ const computeChanges = function(pizza,object,displayPrice){
     })
 
     if(index == -1){
-        orders.push({
+        orders.unshift({
             details:pizza,
             count:1
         })
+        // displayPrice.text(`${orders[0].details.getTotalPrice()}`)
+        updatePrice(card,orders[0].details.getTotalPrice());
+        updateCount(card,1)
     }else{
         orders[index].details = pizza;
+        // displayPrice.text(`${orders[index].details.getTotalPrice() * orders[index].count}`)
+        updatePrice(card,orders[index].details.getTotalPrice() * orders[index].count )
     }
     console.log(orders);
 
-    displayPrice.text(`${pizza.getTotalPrice()}`);
+    // displayPrice.text(`${pizza.getTotalPrice()}`);
 }
 const keepCount = function(pizza,calc,card){
     const index = orders.findIndex(function(order){
@@ -112,20 +117,21 @@ const keepCount = function(pizza,calc,card){
                 count:1
             })
         // card.find('.inCart').text = `1 in Cart`
-        updateCount(card,'1 in Cart')
+        updateCount(card,'1 in Cart');
 
         }
     }else{
         if(calc == 'add'){
             orders[index].count += 1;
             updateCount(card,`${orders[index].count} in Cart`)
-            let price = orders[index].details.getTotalPrice()
-            console.log(price * orders[index].count);
+            let price = orders[index].details.getTotalPrice() * orders[index].count;
+            updatePrice(card,price)
+             
         }else{
             orders[index].count -= 1;
             updateCount(card,`${orders[index].count} in Cart`)
-            let price = orders[index].details.getTotalPrice()
-            console.log(price * orders[index].count);
+            let price = orders[index].details.getTotalPrice() * orders[index].count
+            updatePrice(card,price)
         } 
     }
     console.log(orders);
@@ -145,6 +151,10 @@ function callKeepCount(id,calc,card){
 
 function updateCount(card,count){
      card.find('.inCart').text(count)
+}
+
+function updatePrice(card,price){
+    card.find('.price-display').text(price)
 }
 
 $(function(){
@@ -239,18 +249,18 @@ $(function(){
             }
         })
         // console.log(myObject);
-        const currentPizza = $(this).closest('.card');
-        const pizzaId = currentPizza.attr('id')
-        const priceDisplay = $(this).closest('.card').find('.price-display')
+        const currentCard = $(this).closest('.card');
+        const pizzaId = currentCard.attr('id')
+        // const priceDisplay = $(this).closest('.card').find('.price-display')
         switch (pizzaId) {
             case 'Big-Mark':
-                computeChanges(bigMark,myObject,priceDisplay);
+                computeChanges(bigMark,myObject,currentCard);
                 break;
             case 'Cheese-Love':
-                computeChanges(cheeseLove,myObject,priceDisplay);
+                computeChanges(cheeseLove,myObject,currentCard);
                 break;
             case 'Pepperoni-Craze':
-                computeChanges(pepperoni,myObject,priceDisplay);
+                computeChanges(pepperoni,myObject,currentCard);
                 break;
             default:
                 console.log('Sth broke')
