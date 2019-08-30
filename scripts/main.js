@@ -1,3 +1,4 @@
+
 const Pizza = function(name,size='small'){
     this.name = name;
     this.size = size;
@@ -6,12 +7,11 @@ const Pizza = function(name,size='small'){
     Object.defineProperty(this,'price',{
         get: function(){
             switch (this.size) {
-                case 'small': return this.listPrice[0]
-                    break;
                 case 'medium': return this.listPrice[1]
                     break;
                 case 'large':return this.listPrice[2]
-                default: alert('error')
+                    break;
+                default: return this.listPrice[0]
                     break;
             }
         }
@@ -41,7 +41,7 @@ Pizza.prototype.getTotalPrice = function(){
             break;
         case 'crispy' : crustPrice = 200;
             break;
-        case 'classic' : crustPrice = 10;
+        case 'classic' : crustPrice = 100;
             break;
         default: crustPrice= 0;
             break;
@@ -72,20 +72,27 @@ Pepperoni.prototype = new Pizza();
 
 const  availablePizza = [];
 
-const bigmark = new BigMark('Big Mark');
+const bigMark = new BigMark('Big Mark');
 const cheeseLove = new CheeseLove('Cheese Love')
 const pepperoni = new Pepperoni('Pepperoni Craze')
-availablePizza.push(bigmark,cheeseLove,pepperoni);
+availablePizza.push(bigMark,cheeseLove,pepperoni);
 
+
+const computeChanges = function(pizza,object,displayPrice){
+    pizza.size = object.size;
+    pizza.topping = object.topping;
+    pizza.crust = object.crust;
+    displayPrice.text(`${pizza.getTotalPrice()}`);
+}
 
 
 $(function(){
 
-    //add pizza displauy to the DOM dynamically
+    //add pizza display to the DOM dynamically
     availablePizza.forEach(function(pizza){
         $('#card-display').append(`
-            <div class="card">
-                <div id="${(pizza.name).replace(' ','-')}" class="card-img-top"></div>
+            <div class="card" id="${(pizza.name).replace(' ','-')}">
+                <div class="card-img-top"></div>
                 <div class="card-body">
                     <h5 class="card-title">${pizza.name}</h5>
                     <div class="price-display">${pizza.getTotalPrice()}</div>
@@ -98,7 +105,6 @@ $(function(){
                                 <div class="form-group">
                                     <label for="size">Size</label>
                                     <select name="size" class="form-control" id="size">
-                                        <option value=""></option>
                                         <option value="small">Small</option>
                                         <option value="medium">Medium</option>
                                         <option value="large">Large</option>
@@ -122,7 +128,7 @@ $(function(){
                                     <select name="crust" class="form-control" id="crust">
                                         <option value=""></option>
                                         <option value="crispy">Crispy</option>
-                                        <option value="classic">Stuffed</option>
+                                        <option value="classic">Classic</option>
                                         <option value="glutenFree">Gluten Free</option>
                                     </select>
                                 </div>
@@ -139,36 +145,6 @@ $(function(){
     
     let arr = [];
     let objArr = [];
-
-    // function showResults(){
-    //     arr = []
-    //     // console.log(this);
-    //     // const form = $('form')
-    //     var result = $('form').serialize()
-
-    //     const splitted = result.split('&');
-
-    //     splitted.forEach(element => {
-    //         let data = element.split('=');
-    //         arr.push(data);
-    //     });
-       
-        
-    //     arr.forEach(function(element){
-
-    //         let obj =Object.assign({},{[element[0]]:element[1]})
-        
-    //         objArr.push(obj);
-    //      })
-    
-    //     //  console.log(objArr)
-    //     }
-
-    //     $('form :input').change(function(){
-    //         objArr = [];
-    //         showResults();
-    //     })
-    // showResults();
 
     $('form').change(function(){
         arr =[];
@@ -195,17 +171,26 @@ $(function(){
             }
         })
         console.log(myObject);
+        const currentPizza = $(this).closest('.card');
+        const pizzaId = currentPizza.attr('id')
+        const priceDisplay = $(this).closest('.card').find('.price-display')
+        switch (pizzaId) {
+            case 'Big-Mark':
+                computeChanges(bigMark,myObject,priceDisplay);
+                break;
+            case 'Cheese-Love':
+                computeChanges(cheeseLove,myObject,priceDisplay);
+                break;
+            case 'Pepperoni-Craze':
+                computeChanges(pepperoni,myObject,priceDisplay);
+                break;
+            default:
+                console.log('Sth broke')
+                break;
+        }
+        
+
     })
-
-
-
-
-
-
-
-
-
-
 
 
 

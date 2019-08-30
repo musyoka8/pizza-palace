@@ -59,13 +59,13 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
-#Big-Mark{
+#Big-Mark .card-img-top{
     background-image: url(/images/pizza/pizza2.jpg)
 }
-#Cheese-Love{
+#Cheese-Love .card-img-top{
     background-image: url(/images/pizza/pizza3.jpg)
 }
-#Pepperoni-Craze{
+#Pepperoni-Craze .card-img-top{
     background-image: url(/images/pizza/pizza4.jpg)
 }
 
