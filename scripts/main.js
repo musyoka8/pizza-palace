@@ -1,6 +1,8 @@
 const Pizza = function(name,size){
     this.name = name;
     this.size = size;
+    this.topping = null;
+    this.crust = null;
     Object.defineProperty(this,'price',{
         get: function(){
             switch (this.size) {
@@ -17,8 +19,21 @@ const Pizza = function(name,size){
 }
 
 
-// const myPizza = new Pizza('BigMark','small');
-// console.log(myPizza);
+const BigMark = function(name,size){
+    Pizza.call(this, name, size);
+    this.listPrice = [500,750,1000]
+}
+
+const HeavyJoe = function(name,size){
+    Pizza.call(this,name,size);
+    this.listPrice = [400,600,1200]
+}
+
+
+
+
+const myPizza = new HeavyJoe('BigMark','small');
+console.log(myPizza);
 
 
 
