@@ -101,7 +101,7 @@ const computeChanges = function(pizza,object,displayPrice){
 
     displayPrice.text(`${pizza.getTotalPrice()}`);
 }
-const keepCount = function(pizza,calc){
+const keepCount = function(pizza,calc,card){
     const index = orders.findIndex(function(order){
         return order.details.name === pizza.name;
     })
@@ -111,14 +111,19 @@ const keepCount = function(pizza,calc){
                 details:pizza,
                 count:1
             })
+        // card.find('.inCart').text = `1 in Cart`
+        updateCount(card,'1 in Cart')
+
         }
     }else{
         if(calc == 'add'){
             orders[index].count += 1;
+            updateCount(card,`${orders[index].count} in Cart`)
             let price = orders[index].details.getTotalPrice()
             console.log(price * orders[index].count);
         }else{
             orders[index].count -= 1;
+            updateCount(card,`${orders[index].count} in Cart`)
             let price = orders[index].details.getTotalPrice()
             console.log(price * orders[index].count);
         } 
@@ -126,16 +131,20 @@ const keepCount = function(pizza,calc){
     console.log(orders);
 }
 
-function callKeepCount(id,calc){
+function callKeepCount(id,calc,card){
     switch (id) {
-        case 'Big-Mark': keepCount(bigMark,calc);
+        case 'Big-Mark': keepCount(bigMark,calc,card);
             break;
-        case 'Cheese-Love':keepCount(cheeseLove,calc);
+        case 'Cheese-Love':keepCount(cheeseLove,calc,card);
             break;
-        case 'Pepperoni-Craze':keepCount(pepperoni,calc)
+        case 'Pepperoni-Craze':keepCount(pepperoni,calc,card)
         default:
             break;
     }
+}
+
+function updateCount(card,count){
+     card.find('.inCart').text(count)
 }
 
 $(function(){
@@ -190,7 +199,7 @@ $(function(){
                     <button class="btn btn-secondary cart-btn">Order</button>
                     <div class="order-btns">
                         <button class="btn btn-primary add">+</button>
-                        <p class="inCart">1 in cart</p>
+                        <p class="inCart">0 in Cart</p>
                         <button class="btn btn-primary minus">-</button>
                     </div>
                     
@@ -258,13 +267,15 @@ $(function(){
     })
 
     $('.add').click(function(){
-        const id = $(this).closest('.card').attr('id');
-        callKeepCount(id,'add')
+        const card = $(this).closest('.card')
+        const id = card.attr('id');
+        callKeepCount(id,'add',card)
     })
 
     $('.minus').click(function(){
-        const id = $(this).closest('.card').attr('id');
-        callKeepCount(id,'minus')
+        const card = $(this).closest('.card')
+        const id  = card.attr('id');
+        callKeepCount(id,'minus',card)
 
     })
    
