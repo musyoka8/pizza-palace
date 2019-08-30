@@ -81,7 +81,19 @@ availablePizza.push(bigmark,cheeseLove,pepperoni);
 
 $(function(){
 
-
+    availablePizza.forEach(function(pizza){
+        $('#card-display').append(`
+            <div class="card">
+                <div id="${pizza.name}" class="card-img-top"></div>
+                <div class="card-body">
+                    <h5 class="card-title">${pizza.name}</h5>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-secondary cart-btn">Order</button>
+                </div>
+            </div> 
+        `)
+    })
 
 
 
