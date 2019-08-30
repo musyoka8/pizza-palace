@@ -72,6 +72,38 @@ console.log(myPizza);
 
 $(function(){
 
+    // $('#card-display').append(`
+
+    // <div class="card">
+    //     <div id="card-img-5" class="card-img-top"></div>
+    //     <div class="card-body">
+    //         <h5 class="card-title">Card title</h5>
+    //     </div>
+    //     <div class="card-footer">
+    //         <button class="btn btn-secondary cart-btn">Order</button>
+    //     </div>
+    // </div> 
+    // <div class="card">
+    //     <div id="card-img-5" class="card-img-top"></div>
+    //     <div class="card-body">
+    //         <h5 class="card-title">Card title</h5>
+    //     </div>
+    //     <div class="card-footer">
+    //         <button class="btn btn-secondary cart-btn">Order</button>
+    //     </div>
+    // </div> 
+    // <div class="card">
+    //     <div id="card-img-5" class="card-img-top"></div>
+    //     <div class="card-body">
+    //         <h5 class="card-title">Card title</h5>
+    //     </div>
+    //     <div class="card-footer">
+    //         <button class="btn btn-secondary cart-btn">Order</button>
+    //     </div>
+    // </div> 
+    
+    // `)
+
 
 
 

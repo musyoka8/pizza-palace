@@ -11,6 +11,7 @@ body{
     background-color: rgba(0,0,0,.5)
 }
 
+/* <-------Header Styles-------> */
 #header{
     height:20vh;
     display:flex;
@@ -18,6 +19,8 @@ body{
     align-items: center;
     color:#F18C41;
 }
+
+/* <------ Carousel Styles------> */
 #carousel{
     height:50vh;
 }
@@ -39,4 +42,22 @@ body{
 #img-4{
     background-image: url('/images/pizza/pizza4.jpg');
 }
+
+/* <-------Card display--------> */
+#card-display{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card{
+    width:300px;
+    margin:10px;
+}
+.card-img-top{
+    height:200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 
