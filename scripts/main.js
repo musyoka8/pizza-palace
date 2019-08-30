@@ -78,13 +78,65 @@ const pepperoni = new Pepperoni('Pepperoni Craze')
 availablePizza.push(bigMark,cheeseLove,pepperoni);
 
 
+const orders = []
+
 const computeChanges = function(pizza,object,displayPrice){
     pizza.size = object.size;
     pizza.topping = object.topping;
     pizza.crust = object.crust;
+
+    const index = orders.findIndex(function(order){
+        return order.details.name === pizza.name;
+    })
+
+    if(index == -1){
+        orders.push({
+            details:pizza,
+            count:1
+        })
+    }else{
+        orders[index].details = pizza;
+    }
+    console.log(orders);
+
     displayPrice.text(`${pizza.getTotalPrice()}`);
 }
+const keepCount = function(pizza,calc){
+    const index = orders.findIndex(function(order){
+        return order.details.name === pizza.name;
+    })
+    if(index == -1){
+        if(calc == 'add'){
+            orders.push({
+                details:pizza,
+                count:1
+            })
+        }
+    }else{
+        if(calc == 'add'){
+            orders[index].count += 1;
+            let price = orders[index].details.getTotalPrice()
+            console.log(price * orders[index].count);
+        }else{
+            orders[index].count -= 1;
+            let price = orders[index].details.getTotalPrice()
+            console.log(price * orders[index].count);
+        } 
+    }
+    console.log(orders);
+}
 
+function callKeepCount(id,calc){
+    switch (id) {
+        case 'Big-Mark': keepCount(bigMark,calc);
+            break;
+        case 'Cheese-Love':keepCount(cheeseLove,calc);
+            break;
+        case 'Pepperoni-Craze':keepCount(pepperoni,calc)
+        default:
+            break;
+    }
+}
 
 $(function(){
 
@@ -136,6 +188,13 @@ $(function(){
                         </div>
                     </form>
                     <button class="btn btn-secondary cart-btn">Order</button>
+                    <div class="order-btns">
+                        <button class="btn btn-primary add">+</button>
+                        <p class="inCart">1 in cart</p>
+                        <button class="btn btn-primary minus">-</button>
+                    </div>
+                    
+                    
                 </div>
             </div> 
         `)
@@ -149,7 +208,7 @@ $(function(){
     $('form').change(function(){
         arr =[];
         objArr = []
-        var result = $(this).serialize();
+        const result = $(this).serialize();
         const splitted = result.split('&');
 
         splitted.forEach(element => {
@@ -170,7 +229,7 @@ $(function(){
                 }
             }
         })
-        console.log(myObject);
+        // console.log(myObject);
         const currentPizza = $(this).closest('.card');
         const pizzaId = currentPizza.attr('id')
         const priceDisplay = $(this).closest('.card').find('.price-display')
@@ -192,7 +251,23 @@ $(function(){
 
     })
 
+    $('.order-btns').hide();
+    $('.cart-btn').click(function(){
+        $(this).next().show()
+        $(this).hide();
+    })
 
+    $('.add').click(function(){
+        const id = $(this).closest('.card').attr('id');
+        callKeepCount(id,'add')
+    })
+
+    $('.minus').click(function(){
+        const id = $(this).closest('.card').attr('id');
+        callKeepCount(id,'minus')
+
+    })
+   
 
 
 

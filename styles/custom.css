@@ -82,3 +82,13 @@ body{
     display: flex;
     flex-direction: column;
 }
+/* .inCart{
+    text-align: center;
+} */
+
+.order-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
