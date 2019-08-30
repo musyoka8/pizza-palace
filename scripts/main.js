@@ -1,4 +1,4 @@
-const Pizza = function(name,size){
+const Pizza = function(name,size='small'){
     this.name = name;
     this.size = size;
     this.topping = 'mushrooms';
@@ -58,64 +58,28 @@ const BigMark = function(name,size){
 }
 BigMark.prototype = new Pizza();
 
-const HeavyJoe = function(name,size){
+const CheeseLove = function(name,size){
     Pizza.call(this,name,size);
-    this.listPrice = [400,600,1200]
+    this.listPrice = [700,1000,1300]
 }
-HeavyJoe.prototype = new Pizza();
+CheeseLove.prototype = new Pizza();
+
+const Pepperoni = function(name,size){
+    Pizza.call(this,name,size);
+    this.listPrice = [650,950,1150]
+}
+Pepperoni.prototype = new Pizza();
+
+const  availablePizza = [];
+
+const bigmark = new BigMark('Big Mark');
+const cheeseLove = new CheeseLove('Cheese Love')
+const pepperoni = new Pepperoni('Pepperoni Craze')
+availablePizza.push(bigmark,cheeseLove,pepperoni);
 
 
-
-
-const myPizza = new HeavyJoe('BigMark','small');
-console.log(myPizza);
 
 $(function(){
-
-    // $('#card-display').append(`
-
-    // <div class="card">
-    //     <div id="card-img-5" class="card-img-top"></div>
-    //     <div class="card-body">
-    //         <h5 class="card-title">Card title</h5>
-    //     </div>
-    //     <div class="card-footer">
-    //         <button class="btn btn-secondary cart-btn">Order</button>
-    //     </div>
-    // </div> 
-    // <div class="card">
-    //     <div id="card-img-5" class="card-img-top"></div>
-    //     <div class="card-body">
-    //         <h5 class="card-title">Card title</h5>
-    //     </div>
-    //     <div class="card-footer">
-    //         <button class="btn btn-secondary cart-btn">Order</button>
-    //     </div>
-    // </div> 
-    // <div class="card">
-    //     <div id="card-img-5" class="card-img-top"></div>
-    //     <div class="card-body">
-    //         <h5 class="card-title">Card title</h5>
-    //     </div>
-    //     <div class="card-footer">
-    //         <button class="btn btn-secondary cart-btn">Order</button>
-    //     </div>
-    // </div> 
-    
-    // `)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
