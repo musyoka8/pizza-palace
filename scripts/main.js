@@ -81,6 +81,7 @@ availablePizza.push(bigmark,cheeseLove,pepperoni);
 
 $(function(){
 
+    //add pizza displauy to the DOM dynamically
     availablePizza.forEach(function(pizza){
         $('#card-display').append(`
             <div class="card">
@@ -97,6 +98,7 @@ $(function(){
                                 <div class="form-group">
                                     <label for="size">Size</label>
                                     <select name="size" class="form-control" id="size">
+                                        <option value=""></option>
                                         <option value="small">Small</option>
                                         <option value="medium">Medium</option>
                                         <option value="large">Large</option>
@@ -107,9 +109,10 @@ $(function(){
                                 <div class="form-group">
                                     <label for="topping">Topping</label>
                                     <select name="topping" class="form-control" id="topping">
-                                        <option value="spinach">Spinach</option>
-                                        <option value="pineapple">Pineapple</option>
-                                        <option value="sausage">Sausage</option>
+                                        <option value=""></option>
+                                        <option value="pepperoni">Pepperoni</option>
+                                        <option value="bacon">Bacon</option>
+                                        <option value="mushrooms">Mushrooms</option>
                                     </select>
                                 </div>
                             </div>
@@ -117,9 +120,10 @@ $(function(){
                                 <div class="form-group">
                                     <label for="crust">Crust</label>
                                     <select name="crust" class="form-control" id="crust">
+                                        <option value=""></option>
                                         <option value="crispy">Crispy</option>
-                                        <option value="stuffed">stuffed</option>
-                                        <option value="glutenFree">glutenFree</option>
+                                        <option value="classic">Stuffed</option>
+                                        <option value="glutenFree">Gluten Free</option>
                                     </select>
                                 </div>
                             </div>
@@ -130,6 +134,71 @@ $(function(){
             </div> 
         `)
     })
+
+    //collect form input to recalculate price
+    
+    let arr = [];
+    let objArr = [];
+
+    // function showResults(){
+    //     arr = []
+    //     // console.log(this);
+    //     // const form = $('form')
+    //     var result = $('form').serialize()
+
+    //     const splitted = result.split('&');
+
+    //     splitted.forEach(element => {
+    //         let data = element.split('=');
+    //         arr.push(data);
+    //     });
+       
+        
+    //     arr.forEach(function(element){
+
+    //         let obj =Object.assign({},{[element[0]]:element[1]})
+        
+    //         objArr.push(obj);
+    //      })
+    
+    //     //  console.log(objArr)
+    //     }
+
+    //     $('form :input').change(function(){
+    //         objArr = [];
+    //         showResults();
+    //     })
+    // showResults();
+
+    $('form').change(function(){
+        arr =[];
+        objArr = []
+        var result = $(this).serialize();
+        const splitted = result.split('&');
+
+        splitted.forEach(element => {
+            let data = element.split('=');
+            arr.push(data);
+        });
+        
+        arr.forEach(function(element){
+            let obj =Object.assign({},{[element[0]]:element[1]})
+        
+            objArr.push(obj);
+        })
+        const myObject = {};
+        objArr.forEach(function(obj){
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    myObject[key] = obj[key]
+                }
+            }
+        })
+        console.log(myObject);
+    })
+
+
+
 
 
 
