@@ -94,12 +94,10 @@ const computeChanges = function(pizza,object,card){
             details:pizza,
             count:1
         })
-        // displayPrice.text(`${orders[0].details.getTotalPrice()}`)
         updatePrice(card,orders[0].details.getTotalPrice());
         updateCount(card,1)
     }else{
         orders[index].details = pizza;
-        // displayPrice.text(`${orders[index].details.getTotalPrice() * orders[index].count}`)
         updatePrice(card,orders[index].details.getTotalPrice() * orders[index].count )
     }
     console.log(orders);
@@ -206,7 +204,7 @@ $(function(){
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-secondary cart-btn">Order</button>
+                    <button class="btn btn-secondary cart-btn">Add to cart</button>
                     <div class="order-btns">
                         <button class="btn btn-primary add">+</button>
                         <p class="inCart">0 in Cart</p>
@@ -289,7 +287,12 @@ $(function(){
 
     })
    
-
+    $('.close').click(function(){
+        $('#mymodal').hide();
+    })
+    $('.cart').click(function(){
+        $('#mymodal').show();
+    })
 
 
 })
