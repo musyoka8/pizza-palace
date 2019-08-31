@@ -165,5 +165,20 @@ body{
 #summary hr{
     width:80%;
 }
+/* #form-total{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    align-items:center;
 
+}
 
+ */
+ .hidden{
+     display:none;
+ }
+ .checkout-btn{
+     display:block;
+     margin: auto;
+ }

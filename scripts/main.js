@@ -168,7 +168,7 @@ $(function(){
                 </div>
                 <div style="clear:both;"><div>
                 <div class="card-footer">
-                    <form>
+                    <form class="form">
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">
@@ -261,7 +261,7 @@ $(function(){
                 computeChanges(pepperoni,myObject,currentCard);
                 break;
             default:
-                console.log('Sth broke')
+                // console.log('Sth broke')
                 break;
         }
         
@@ -311,8 +311,17 @@ $(function(){
             `)
         })
         $('.total').html(`<h2>Total : ${total}</h2>`)
-
-
+    })
+    
+    $('#delivery').change(function(){
+        if($(this).is(':checked') && $(this).val() =="delivery"){
+            $('.hidden').css({display:'flex'})
+        }
+    })
+    $('#pickup').change(function(){
+        if($(this).is(':checked') && $(this).val() =="pickup"){
+            $('.hidden').css({display:'none'})
+        }
     })
     
 
