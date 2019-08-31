@@ -1,6 +1,6 @@
 /*<-------- General styles ----------> */
 body{
-    background-image: url('/images/bg.jpg');
+    background-image: url('../images/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -32,16 +32,16 @@ body{
     background-position: center;
 }
 #img-3{
-    background-image: url('/images/pizza/pizza1.jpg');
+    background-image: url('../images/pizza/pizza1.jpg');
 }
 #img-2{
-    background-image: url('/images/pizza/pizza2.jpg');
+    background-image: url('../images/pizza/pizza2.jpg');
 }
 #img-1{
-    background-image: url('/images/pizza/pizza3.jpg');
+    background-image: url('../images/pizza/pizza3.jpg');
 }
 #img-4{
-    background-image: url('/images/pizza/pizza4.jpg');
+    background-image: url('../images/pizza/pizza4.jpg');
 }
 
 /* <-------Card display--------> */
@@ -61,13 +61,13 @@ body{
     background-position: center;
 }
 #Big-Mark .card-img-top{
-    background-image: url(/images/pizza/pizza2.jpg)
+    background-image: url(../images/pizza/pizza2.jpg)
 }
 #Cheese-Love .card-img-top{
-    background-image: url(/images/pizza/pizza3.jpg)
+    background-image: url(../images/pizza/pizza3.jpg)
 }
 #Pepperoni-Craze .card-img-top{
-    background-image: url(/images/pizza/pizza4.jpg)
+    background-image: url(../images/pizza/pizza4.jpg)
 }
 
 .price-display,.card-title{
@@ -166,16 +166,6 @@ body{
 #summary hr{
     width:80%;
 }
-/* #form-total{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    align-items:center;
-
-}
-
- */
  .hidden{
      display:none;
  }
