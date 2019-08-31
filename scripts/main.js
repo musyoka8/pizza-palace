@@ -155,6 +155,32 @@ function updatePrice(card,price){
     card.find('.price-display').text(price)
 }
 
+function clearCart(cart){
+    cart.splice(0,cart.length);
+    $('.inCart').text(`0 in Cart`);
+    $('.cart-btn').show();
+    $('.order-btns').hide();
+    const currentCard = $('.price-display').closest('.card');
+    const pizzaId = currentCard.attr('id')
+    resetPrice(currentCard,pizzaId)
+
+}
+
+function resetPrice(currentCard, pizzaId){
+    switch (pizzaId) {
+        case 'Big-Mark':
+                currentCard.find('.price-display').text(`${bigMark.getTotalPrice()}`)
+            break;
+        case 'Cheese-Love':
+            currentCard.find('.price-display').text(`${cheeseLove.getTotalPrice()}`)
+            break;
+        case 'Pepperoni-Craze':
+            currentCard.find('.price-display').text(`${pepperoni.getTotalPrice()}`)
+            break;
+        default:
+            break;
+    }
+}
 $(function(){
 
     //add pizza display to the DOM dynamically
@@ -322,6 +348,10 @@ $(function(){
         if($(this).is(':checked') && $(this).val() =="pickup"){
             $('.hidden').css({display:'none'})
         }
+    })
+    $(".checkout-btn").click(function(){
+        clearCart(orders);
+        $('#mymodal').hide();
     })
     
 
