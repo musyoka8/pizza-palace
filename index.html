@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/custom.css">
     <script src="scripts/jquery-3.4.1.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/be3e9fc394.js"></script>
     <script src="scripts/main.js"></script>
     <title>Pizza Palace</title>
 </head>
@@ -19,7 +20,6 @@
                     <h1>Pizza Palace</h1>
                 </div>
                 <div id="mycarousel">
-                    <!-- <div class="bd-example"> -->
                     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -50,7 +50,6 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                      <!-- </div> -->
                     <div class="cafe-desc">
                          The tastiest Pizza in town
                     </div>
@@ -60,7 +59,9 @@
                 
             </div>
             <div class="cart">
-                <p style="width:auto">View Cart</p>
+                <button type="button" class="btn btn-primary">
+                    View Cart <i class="fa fa-shopping-cart"></i> <span class="badge badge-light">0</span>
+                </button>
             </div>
         </div>
         <div id="mymodal" class="modal">

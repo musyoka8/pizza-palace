@@ -96,9 +96,11 @@ const computeChanges = function(pizza,object,card){
         })
         updatePrice(card,orders[0].details.getTotalPrice());
         updateCount(card,`1 in Cart`)
+        updateCartBadge()
     }else{
         orders[index].details = pizza;
         updatePrice(card,orders[index].details.getTotalPrice() * orders[index].count )
+        updateCartBadge()
     }
     console.log(orders);
 
@@ -116,6 +118,7 @@ const keepCount = function(pizza,calc,card){
             })
         // card.find('.inCart').text = `1 in Cart`
         updateCount(card,'1 in Cart');
+        updateCartBadge()
 
         }
     }else{
@@ -124,15 +127,15 @@ const keepCount = function(pizza,calc,card){
             updateCount(card,`${orders[index].count} in Cart`)
             let price = orders[index].details.getTotalPrice() * orders[index].count;
             updatePrice(card,price)
-             
+             updateCartBadge()
         }else{
             orders[index].count -= 1;
             updateCount(card,`${orders[index].count} in Cart`)
             let price = orders[index].details.getTotalPrice() * orders[index].count
             updatePrice(card,price)
+            updateCartBadge()
         } 
     }
-    console.log(orders);
 }
 
 function callKeepCount(id,calc,card){
@@ -162,7 +165,8 @@ function clearCart(cart){
     $('.order-btns').hide();
     const currentCard = $('.price-display').closest('.card');
     const pizzaId = currentCard.attr('id')
-    resetPrice(currentCard,pizzaId)
+    resetPrice(currentCard,pizzaId);
+    updateCartBadge();
 
 }
 
@@ -180,6 +184,13 @@ function resetPrice(currentCard, pizzaId){
         default:
             break;
     }
+}
+function updateCartBadge(){
+    let count = 0;
+    orders.forEach(function(order){
+        count += order.count;
+    })
+    $('.badge').text(`${count}`)
 }
 $(function(){
 

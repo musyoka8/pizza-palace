@@ -1,5 +1,8 @@
 /*<-------- General styles ----------> */
 @import url('https://fonts.googleapis.com/css?family=Lemon|Mogra&display=swap');
+*{
+    box-sizing: border-box;
+}
 body{
     background-image: url('../images/bg.jpg');
     background-repeat: no-repeat;
@@ -116,15 +119,14 @@ body{
 /* <-----Cart styling-----> */
 .cart{
     position: fixed;
-    left:0;
-    top:50%;
-    background-color:#EE7805;
-    text-align: center;
+    left:-10px;
+    top:5%;
     border-radius:0 10px 10px 0;
-    color:white;
-    font-weight: bold;
-    width:100px;
     cursor: pointer;
+}
+.cart button{
+    background-color: #F18C41;
+    border: #F17A29;
 }
 /* <------Modal-----> */
 .modal{
@@ -191,4 +193,5 @@ body{
  .checkout-btn{
      display:block;
      margin: auto;
+     background-color: #F18C41;
  }
