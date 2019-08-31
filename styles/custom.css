@@ -1,14 +1,15 @@
 /*<-------- General styles ----------> */
 body{
-    background-image: url('/images/background.jpg');
+    background-image: url('/images/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height:100vh;
+    background-attachment: fixed;
+    /* height:100vh; */
 }
 .cover{
-    height:100vh;
-    background-color: rgba(0,0,0,.5)
+    height:auto;
+    background-color: rgba(0,0,0,.7)
 }
 
 /* <-------Header Styles-------> */

@@ -2,8 +2,8 @@
 const Pizza = function(name,size='small'){
     this.name = name;
     this.size = size;
-    this.topping = null;
-    this.crust = null;
+    this.topping = "";
+    this.crust = "";
     Object.defineProperty(this,'price',{
         get: function(){
             switch (this.size) {
