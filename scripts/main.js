@@ -205,6 +205,15 @@ function updateCartBadge(){
     })
     $('.badge').text(`${count}`)
 }
+function calculateCheckOutPrice(){
+    let total = 0
+    orders.forEach(function(order){
+        if(order.count !== 0){
+            total += order.details.getTotalPrice()*order.count;
+        }
+    })
+    return total;
+}
 $(function(){
 
     //add pizza display to the DOM dynamically
@@ -344,10 +353,10 @@ $(function(){
     $('.cart').click(function(){
         $('#mymodal').find('#summary').empty();
         $('#mymodal').show();
-        total = 0;
+        $('.hidden').hide();
+        const total = calculateCheckOutPrice();
         orders.forEach(function(order,i){
             if(order.count !== 0){
-                total += order.details.getTotalPrice()*order.count;
             $('#summary').append(`
                 <div>
                     <h3>${order.details.name}</h3>
@@ -373,15 +382,18 @@ $(function(){
     $('#delivery').change(function(){
         if($(this).is(':checked') && $(this).val() =="delivery"){
             $('.hidden').css({display:'flex'})
+            $('.total').html(`<h2>Total : ${calculateCheckOutPrice() + 200} (Inclusive of a $200sh delivery fee)</h2>`)
         }
     })
     $('#pickup').change(function(){
         if($(this).is(':checked') && $(this).val() =="pickup"){
             $('.hidden').css({display:'none'})
+            $('.total').html(`<h2>Total : ${calculateCheckOutPrice()}</h2>`)
         }
     })
     $(".checkout-btn").click(function(){
         clearCart(orders);
+        $('#checkoutForm').trigger('reset');
         $('#mymodal').hide();
     })
     
