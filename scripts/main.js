@@ -382,7 +382,7 @@ $(function(){
     $('#delivery').change(function(){
         if($(this).is(':checked') && $(this).val() =="delivery"){
             $('.hidden').css({display:'flex'})
-            $('.total').html(`<h2>Total : ${calculateCheckOutPrice() + 200} (Inclusive of a $200sh delivery fee)</h2>`)
+            $('.total').html(`<h2>Total : ${calculateCheckOutPrice() + 200} (Inclusive of a $200sh delivery fee)</h2>`);
         }
     })
     $('#pickup').change(function(){
@@ -395,8 +395,14 @@ $(function(){
         clearCart(orders);
         $('#checkoutForm').trigger('reset');
         $('#mymodal').hide();
+        $('#alert').append(`
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Order Successful</strong><span id="checkout-alert"> Your order should be ready in about 1 hour!</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        `)
     })
     
-
-
 })
