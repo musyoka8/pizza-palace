@@ -101,7 +101,15 @@ body::-webkit-scrollbar-thumb {
 #Pepperoni-Craze .card-img-top{
     background-image: url(../images/pizza/pizza4.jpg)
 }
-
+#Napoletana .card-img-top{
+    background-image: url(../images/pizza/pizza1.jpg)
+}
+#Diavola .card-img-top{
+    background-image: url(../images/pizza/pizza5.jpeg);
+}
+#Frutti-D\'Mare .card-img-top{
+    background-image: url(../images/pizza/pizza6.jpg);
+}
 .price-display,.card-title{
     display: inline-block;
 }

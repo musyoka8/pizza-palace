@@ -70,13 +70,33 @@ const Pepperoni = function(name,size){
 }
 Pepperoni.prototype = new Pizza();
 
+const Napoletana = function(name,size){
+    Pizza.call(this,name,size);
+    this.listPrice =[900,1100,1600]
+}
+Napoletana.prototype = new Pizza();
+
+const Diavola = function(name,size){
+    Pizza.call(this,name,size);
+    this.listPrice = [1000,1500,2000]
+}
+Diavola.prototype = new Pizza();
+
+const Frutti = function(name,size){
+    Pizza.call(this,name,size);
+    this.listPrice = [870,1200,1650]
+}
+Frutti.prototype = new Pizza();
+
 const  availablePizza = [];
 
 const bigMark = new BigMark('Big Mark');
 const cheeseLove = new CheeseLove('Cheese Love')
 const pepperoni = new Pepperoni('Pepperoni Craze')
-availablePizza.push(bigMark,cheeseLove,pepperoni);
-
+const napoletana = new Napoletana('Napoletana')
+const diavola = new Diavola('Diavola');
+const frutti = new Frutti('Frutti D\'Mare')
+availablePizza.push(bigMark,cheeseLove,pepperoni,napoletana,diavola,frutti);
 
 const orders = []
 
@@ -152,9 +172,16 @@ function callKeepCount(id,calc,card){
     switch (id) {
         case 'Big-Mark': keepCount(bigMark,calc,card);
             break;
-        case 'Cheese-Love':keepCount(cheeseLove,calc,card);
+        case 'Cheese-Love': keepCount(cheeseLove,calc,card);
             break;
-        case 'Pepperoni-Craze':keepCount(pepperoni,calc,card)
+        case 'Pepperoni-Craze': keepCount(pepperoni,calc,card);
+            break;
+        case 'Napoletana': keepCount(napoletana,calc,card);
+            break;
+        case 'Diavola' :keepCount(diavola,calc,card);
+            break;
+        case 'Frutti-D\'Mare': keepCount(frutti,calc,card);
+            break;
         default:
             break;
     }
@@ -190,6 +217,15 @@ function resetPrice(currentCard, pizzaId){
             break;
         case 'Pepperoni-Craze':
             currentCard.find('.price-display').text(`${pepperoni.getTotalPrice()}`)
+            break;
+        case 'Napoletana':
+            currentCard.find('.price-display').text(`${napoletana.getTotalPrice()}`)
+            break;
+        case 'Diavola':
+            currentCard.find('.price-display').text(`${napoletana.getTotalPrice()}`)
+            break;
+        case 'Frutti-D\'Mare':
+            currentCard.find('.price-display').text(`${napoletana.getTotalPrice()}`)
             break;
         default:
             break;
@@ -314,6 +350,15 @@ $(function(){
                 break;
             case 'Pepperoni-Craze':
                 computeChanges(pepperoni,myObject,currentCard);
+                break;
+            case 'Napoletana':
+                computeChanges(napoletana,myObject,currentCard)
+                break;
+            case 'Diavola':
+                computeChanges(diavola,myObject,currentCard)
+                break;
+            case 'Frutti-D\'Mare':
+                computeChanges(frutti,myObject,currentCard)
                 break;
             default:
                 // console.log('Sth broke')
