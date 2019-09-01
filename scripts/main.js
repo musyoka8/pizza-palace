@@ -97,6 +97,8 @@ const computeChanges = function(pizza,object,card){
         updatePrice(card,orders[0].details.getTotalPrice());
         updateCount(card,`1 in Cart`)
         updateCartBadge()
+        card.find('.cart-btn').hide();
+        card.find('.order-btns').show()
     }else{
         orders[index].details = pizza;
         updatePrice(card,orders[index].details.getTotalPrice() * orders[index].count )
@@ -128,11 +130,23 @@ const keepCount = function(pizza,calc,card){
             updatePrice(card,price)
              updateCartBadge()
         }else{
-            orders[index].count -= 1;
-            updateCount(card,`${orders[index].count} in Cart`)
-            let price = orders[index].details.getTotalPrice() * orders[index].count
-            updatePrice(card,price)
-            updateCartBadge()
+            if(orders[index].count == 1){
+                orders[index].count = 0;
+                updateCartBadge()
+                updatePrice(card,0)
+                updateCount(card,`${orders[index].count} in Cart`)
+                card.find('.cart-btn').show();
+                card.find('.order-btns').hide()
+
+            }else if(orders[index].count ==0){
+                orders.splice(index,1)
+            }else{
+                orders[index].count -= 1;
+                updateCount(card,`${orders[index].count} in Cart`)
+                let price = orders[index].details.getTotalPrice() * orders[index].count
+                updatePrice(card,price)
+                updateCartBadge()
+            }
         } 
     }
 }
@@ -331,8 +345,9 @@ $(function(){
         $('#mymodal').find('#summary').empty();
         $('#mymodal').show();
         total = 0;
-        orders.forEach(function(order){
-            total += order.details.getTotalPrice()*order.count;
+        orders.forEach(function(order,i){
+            if(order.count !== 0){
+                total += order.details.getTotalPrice()*order.count;
             $('#summary').append(`
                 <div>
                     <h3>${order.details.name}</h3>
@@ -345,6 +360,7 @@ $(function(){
                     <hr>
                 </div>
             `)
+            }
         })
         $('.total').html(`<h2>Total : ${total}</h2>`)
         if(total== 0){
