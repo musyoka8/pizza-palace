@@ -1,4 +1,4 @@
-
+// <-----Business Logic------>
 const Pizza = function(name,size='small'){
     this.name = name;
     this.size = size;
@@ -104,9 +104,6 @@ const computeChanges = function(pizza,object,card){
         updatePrice(card,orders[index].details.getTotalPrice() * orders[index].count )
         updateCartBadge()
     }
-    console.log(orders);
-
-    // displayPrice.text(`${pizza.getTotalPrice()}`);
 }
 const keepCount = function(pizza,calc,card){
     const index = orders.findIndex(function(order){
@@ -214,6 +211,7 @@ function calculateCheckOutPrice(){
     })
     return total;
 }
+// <----- UI LOGIC ------->
 $(function(){
 
     //add pizza display to the DOM dynamically
@@ -277,7 +275,6 @@ $(function(){
     })
 
     //collect form input to recalculate price
-    
     let arr = [];
     let objArr = [];
 
@@ -305,10 +302,9 @@ $(function(){
                 }
             }
         })
-        // console.log(myObject);
+        
         const currentCard = $(this).closest('.card');
         const pizzaId = currentCard.attr('id')
-        // const priceDisplay = $(this).closest('.card').find('.price-display')
         switch (pizzaId) {
             case 'Big-Mark':
                 computeChanges(bigMark,myObject,currentCard);
