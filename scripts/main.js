@@ -116,7 +116,6 @@ const keepCount = function(pizza,calc,card){
                 details:pizza,
                 count:1
             })
-        // card.find('.inCart').text = `1 in Cart`
         updateCount(card,'1 in Cart');
         updateCartBadge()
 
@@ -348,6 +347,11 @@ $(function(){
             `)
         })
         $('.total').html(`<h2>Total : ${total}</h2>`)
+        if(total== 0){
+            $('.checkout-btn').attr('disabled','')
+        }else{
+            $('.checkout-btn').removeAttr('disabled')
+        }
     })
     
     $('#delivery').change(function(){
